@@ -92,7 +92,7 @@ Role.destroy_all
 
 # Add studio information
 new_studio = Studio.new
-new_studio["title"] = "Warner Bros"
+new_studio["name"] = "Warner Bros"
 new_studio.save
 
 warner = Studio.find_by({"name" => "Warner Bros"}) # Returns a hash of the key value pairs in a row
@@ -296,7 +296,7 @@ new_role["actor_id"] = anne_hathaway["id"]
 new_role["character_name"] = "Selina Kyle"
 new_role.save
 
-puts "There are #{Role.all.count} actors"
+puts "There are #{Role.all.count} roles"
 
 # Prints a header for the movies output
 puts "Movies"
