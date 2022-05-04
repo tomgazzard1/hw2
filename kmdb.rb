@@ -69,14 +69,30 @@
 
 # Delete existing data, so you'll start fresh each time this script is run.
 # Use `Model.destroy_all` code.
-# TODO!
+
+Movie.destroy_all
+Actor.destroy_all
+Studio.destroy_all
+Role.destroy_all
 
 # Generate models and tables, according to the domain model.
-# TODO!
+# 1. In terminal, generate the model and table for Movie, Actor, Role and Studio
+# Example: rails generate model Movie
+# 2. Open newly generated files in db > migrate
+# 3. In the db/migrate file, add relevant columns matching domain model
+# Example: t.string "name"
+# 4. In terminal, execute the migration file
+# Example: rails db:migrate
+# 5. Check the schema file to confirm that everything is correct.
+# Repeat for the other tables/models
+
 
 # Insert data into the database that reflects the sample data shown above.
 # Do not use hard-coded foreign key IDs.
-# TODO!
+puts "There are #{Movie.all.count} movies"
+
+# new_movie = Movie.new
+
 
 # Prints a header for the movies output
 puts "Movies"
