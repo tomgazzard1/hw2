@@ -92,7 +92,6 @@ Role.destroy_all
 
 # Add studio information
 new_studio = Studio.new
-
 new_studio["title"] = "Warner Bros"
 new_studio.save
 
