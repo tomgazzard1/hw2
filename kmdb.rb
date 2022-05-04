@@ -95,7 +95,7 @@ new_studio = Studio.new
 new_studio["name"] = "Warner Bros"
 new_studio.save
 
-warner = Studio.find_by({"name" => "Warner Bros"}) # Returns a hash of the key value pairs in a row
+studio = Studio.find_by({"name" => "Warner Bros"}) # Returns a hash of the key value pairs in a row
 
 puts "There are #{Studio.all.count} studios"
 
@@ -105,7 +105,7 @@ new_movie = Movie.new
 new_movie["title"] = "Batman Begins" # 1
 new_movie["year_released"] = "2005"
 new_movie["rated"] = "PG-13"
-new_movie["studio_id"] = warner["id"]
+new_movie["studio_id"] = studio["id"]
 new_movie.save
 
 batman_begins = Movie.find_by({"title" => "Batman Begins"})
@@ -114,7 +114,7 @@ new_movie = Movie.new
 new_movie["title"] = "The Dark Knight" # 2 
 new_movie["year_released"] = "2008"
 new_movie["rated"] = "PG-13"
-new_movie["studio_id"] = warner["id"]
+new_movie["studio_id"] = studio["id"]
 new_movie.save
 
 dark_knight = Movie.find_by({"title" => "The Dark Knight"})
@@ -123,7 +123,7 @@ new_movie = Movie.new
 new_movie["title"] = "The Dark Knight Rises" # 3
 new_movie["year_released"] = "2012"
 new_movie["rated"] = "PG-13"
-new_movie["studio_id"] = warner["id"]
+new_movie["studio_id"] = studio["id"]
 new_movie.save
 
 dark_knight_rises = Movie.find_by({"title" => "The Dark Knight Rises"})
@@ -304,7 +304,24 @@ puts "======"
 puts ""
 
 # Query the movies data and loop through the results to display the movies output.
-# TODO!
+
+# Movies
+# ======
+
+# Batman Begins          2005           PG-13  Warner Bros.
+# The Dark Knight        2008           PG-13  Warner Bros.
+# The Dark Knight Rises  2012           PG-13  Warner Bros.
+
+all_movies = Movie.all
+
+for movie in all_movies
+    title = movie["title"]
+    year_released = movie["year_released"]
+    rating = movie["rated"]
+    studio = Studio.find_by({"id" => movie["studio_id"]})
+    #puts studio.inspect
+    puts "#{title}, #{year_released}, #{rating}, #{studio["name"]}"
+end
 
 # Prints a header for the cast output
 puts ""
@@ -313,4 +330,32 @@ puts "========"
 puts ""
 
 # Query the cast data and loop through the results to display the cast output for each movie.
-# TODO!
+# Top Cast
+# ========
+
+# Batman Begins          Christian Bale        Bruce Wayne
+# Batman Begins          Michael Caine         Alfred
+# Batman Begins          Liam Neeson           Ra's Al Ghul
+# Batman Begins          Katie Holmes          Rachel Dawes
+# Batman Begins          Gary Oldman           Commissioner Gordon
+# The Dark Knight        Christian Bale        Bruce Wayne
+# The Dark Knight        Heath Ledger          Joker
+
+#new_role = Role.new
+#new_role["movie_id"] = dark_knight_rises["id"]
+#new_role["actor_id"] = christian_bale["id"]
+#new_role["character_name"] = "Bruce Wayne"
+#new_role.save
+
+all_roles = Role.all
+
+for role in all_roles
+    #puts role.inspect
+    movie = Movie.find_by({"id" => role["movie_id"]})
+    #puts movie.inspect
+    actor = Actor.find_by({"id" => role["actor_id"]})
+    #puts actor.inspect
+    role = role["character_name"]
+    #puts role.inspect
+    puts "#{movie["title"]}, #{actor["name"]}, #{role}"
+end
