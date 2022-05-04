@@ -297,6 +297,8 @@ new_role["actor_id"] = anne_hathaway["id"]
 new_role["character_name"] = "Selina Kyle"
 new_role.save
 
+puts "There are #{Role.all.count} actors"
+
 # Prints a header for the movies output
 puts "Movies"
 puts "======"
